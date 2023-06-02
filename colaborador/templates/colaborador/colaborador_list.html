@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="container">
+    <form method="GET">
+        <br>
+        <br>
+        <input type="text" name="nome" placeholder="Busca por Nome do Colaborador"/>
+        <input type="submit" value="Buscar"/>
+    </form>
+</div>
+</p>
+<div class="container">
+    <a href="{% url 'colaborador.novo' %}">+ Cadastrar Novo Colaborador</a>
+</div>
+</p>
+</p>
+</p>
+</p>
+<br>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome do Colaborador</th>
+                <th>CPF</th>
+                <th>RG</th>
+                <th>Endereço</th>
+                <th>CEP</th>
+                <th>Municipio</th>
+                <th>Data de Nascimento</th>
+                <th>Dependentes</th>
+                <th>Cargo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for colaborador in object_list %}
+            <tr>
+                <td>{{ colaborador.nome_colaborador }}</td>
+                <td>{{ colaborador.cpf }}</td>
+                <td>{{ colaborador.rg }}</td>
+                <td>{{ colaborador.endereco }}</td>
+                <td>{{ colaborador.cep }}</td>
+                <td>{{ colaborador.municipio }}</td>
+                <td>{{ colaborador.data_nascimento }}</td>
+                <td>{{ colaborador.dependentes }}</td>
+                <td>{{ colaborador.cargo }}</td>
+                <td>
+                    <a href="{% url 'colaborador.editar' colaborador.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <a href="{% url 'colaborador.remover' colaborador.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
